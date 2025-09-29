@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nami's Cozy Space | Novelas Visuales</title>
+  <!-- Fuentes mágicas -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" href="https://emojicdn.elk.sh/💌" type="image/png">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #fef6ff;
+      text-align: center;
+      background-image: radial-gradient(#f8f0ff 1px, transparent 1px);
+      background-size: 20px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #f3defd;
+      padding: 40px 20px 20px;
+      border-bottom: 3px dashed #d9b3ff;
+      position: relative;
+      z-index: 10;
+    }
+
+    h1, h2 {
+      font-family: 'Dancing Script', cursive;
+      text-shadow: 2px 2px 4px rgba(142, 111, 195, 0.2);
+    }
+
+    h1 {
+      color: #8e6fc3;
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      animation: floatTitle 3s ease-in-out infinite;
+    }
+
+    @keyframes floatTitle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .decoracion {
+      font-size: 1.1em;
+      color: #aa86d1;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    /* ---- NAVEGACIÓN OPTIMIZADA ---- */
+    .navbar {
+      background-color: #efd7ff;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(142, 111, 195, 0.1);
+    }
+
+    .navbar::before {
+      content: "✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦";
+      position: absolute;
+      top: -10px;
+      left: 0;
+      width: 100%;
+      color: rgba(142, 111, 195, 0.3);
+      font-size: 0.8em;
+      pointer-events: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 0 10px;
+    }
+
+    .nav-links li {
+      flex: 0 0 auto;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #6a42b1;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 0.95em;
+    }
+
+    .nav-links li a.active {
+      background-color: #e4c4ff;
+      box-shadow: 0 5px 15px rgba(142, 111, 195, 0.4);
+    }
+
+    .nav-links li a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(228, 196, 255, 0.5), transparent);
+      transition: 0.5s;
+      z-index: -1;
+    }
+
+    .nav-links li a:hover {
+      background-color: #e4c4ff;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(142, 111, 195, 0.4);
+    }
+
+    .nav-links li a:hover::before {
+      left: 100%;
+    }
+
+    /* ---- CONTENIDO PRINCIPAL ---- */
+    main {
+      flex: 1;
+      padding-bottom: 40px;
+    }
+
+    /* ---- MENÚ DE NOVELAS CON CORAZONCITOS ---- */
+    .menu-novelas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px auto;
+      padding: 0 20px;
+      max-width: 1000px;
+    }
+
+    .menu-novelas a {
+      text-decoration: none;
+      background-color: #efd7ff;
+      color: #6a42b1;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 2px 2px 8px #dfc5f3;
+      transition: all 0.4s ease;
+      position: relative;
+      flex: 1 0 auto;
+      min-width: 200px;
+    }
+
+    .menu-novelas a:hover {
+      background-color: #d9b3ff;
+      transform: translateY(-5px) rotate(2deg);
+      box-shadow: 0 8px 20px rgba(142, 111, 195, 0.3);
+    }
+
+    .menu-novelas a::after {
+      content: '♥';
+      position: absolute;
+      right: -5px;
+      top: -5px;
+      font-size: 0.8em;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .menu-novelas a:hover::after {
+      opacity: 1;
+      transform: scale(1.5) rotate(15deg);
+    }
+
+    /* ---- SECCIONES DE NOVELAS ---- */
+    .novela, .contenido-seccion {
+      background-color: #fff8ff;
+      border: 2px solid #e7cef8;
+      border-radius: 20px;
+      margin: 40px auto;
+      max-width: 900px;
+      padding: 30px;
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(223, 197, 243, 0.4);
+      display: none;
+      animation: fadeIn 0.3s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .novela::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #f3defd, #aa86d1, #f3defd);
+    }
+
+    .novela h2, .contenido-seccion h2 {
+      color: #944fcf;
+      text-align: center;
+      font-size: 2.2em;
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .novela h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #e7cef8, transparent);
+    }
+
+    /* ---- APARTADOS CON FLORES ---- */
+    .apartado {
+      margin: 30px 0;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: rgba(247, 240, 252, 0.7);
+      position: relative;
+    }
+
+    .apartado h3 {
+      color: #8c4ac2;
+      margin-bottom: 15px;
+      font-size: 1.3em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .apartado h3::before {
+      content: '❀';
+      font-size: 0.8em;
+    }
+
+    .apartado p {
+      color: #53366b;
+      line-height: 1.7;
+    }
+
+    /* ---- IMÁGENES CON EFECTO POLAROID ---- */
+    .foto-recuerdo {
+      margin: 30px auto;
+      text-align: center;
+      max-width: 80%;
+    }
+
+    .foto-recuerdo img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 10px solid white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      transform: rotate(-1deg);
+      background: white;
+      padding: 5px;
+    }
+
+    .foto-recuerdo:hover img {
+      transform: rotate(0deg) scale(1.03);
+      box-shadow: 0 8px 25px rgba(142, 111, 195, 0.3);
+    }
+
+    .mensaje-hover {
+      font-size: 0.9em;
+      color: #8e6fc3;
+      margin-top: 10px;
+      font-style: italic;
+      opacity: 0.8;
+      transition: all 0.3s;
+    }
+
+    .foto-recuerdo:hover .mensaje-hover {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+
+    /* ---- BOTÓN VOLVER ARRIBA ---- */
+    .volver-arriba {
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+
+    .volver-arriba a {
+      text-decoration: none;
+      background: linear-gradient(45deg, #8e6fc3, #aa86d1);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(142, 111, 195, 0.4);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .volver-arriba a:hover {
+      background: linear-gradient(45deg, #6a42b1, #8e6fc3);
+      transform: translateY(-3px);
+      box-shadow: 0 7px 15px rgba(142, 111, 195, 0.5);
+    }
+
+    /* ---- CARRITO MÁGICO ---- */
+    #cart-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #f3defd;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      font-size: 1.3em;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+    }
+
+    #cart-icon:hover {
+      transform: rotate(15deg) scale(1.1);
+      background-color: #e4c4ff;
+    }
+
+    #cart-count {
+      background-color: #8e6fc3;
+      color: white;
+      border-radius: 50%;
+      padding: 3px 8px;
+      font-size: 0.8em;
+      margin-left: 5px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 350px;
+      height: 100%;
+      background-color: #fff8ff;
+      border-left: 2px solid #e7cef8;
+      z-index: 1001;
+      padding: 25px;
+      overflow-y: auto;
+      box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-content {
+      position: relative;
+    }
+
+    .cart-content h3 {
+      color: #8e6fc3;
+      text-align: center;
+      padding-bottom: 15px;
+      border-bottom: 2px dashed #e7cef8;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+
+    #cart-items {
+      margin: 20px 0;
+    }
+
+    #cart-items div {
+      padding: 10px 0;
+      border-bottom: 1px solid #f3defd;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #cart-total {
+      font-weight: bold;
+      color: #8e6fc3;
+      font-size: 1.2em;
+      margin: 20px 0;
+      text-align: right;
+    }
+
+    .cart-content button {
+      background: linear-gradient(45deg, #8e6fc3, #aa86d1);
+      color: white;
+      border: none;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(142, 111, 195, 0.3);
+    }
+
+    .cart-content button:hover {
+      background: linear-gradient(45deg, #6a42b1, #8e6fc3);
+      transform: translateY(-2px);
+      box-shadow: 0 7px 15px rgba(142, 111, 195, 0.4);
+    }
+
+    /* ---- BOTONES DE COMPRA ---- */
+    .product-actions {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px dashed #e7cef8;
+      position: relative;
+    }
+
+    .product-actions::before {
+      content: '✧･ﾟ: *✧･ﾟ:* *:･ﾟ✧*:･ﾟ✧';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      width: 100%;
+      color: #e7cef8;
+      font-size: 0.9em;
+      letter-spacing: 2px;
+    }
+
+    .product-actions .price {
+      font-size: 1.8em;
+      color: #944fcf;
+      font-weight: bold;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .product-actions .price::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #e7cef8, #aa86d1, #e7cef8);
+    }
+
+    .product-actions button {
+      background: linear-gradient(45deg, #aa86d1, #c9a8e9);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s;
+      font-weight: bold;
+      font-size: 1.1em;
+      box-shadow: 0 5px 15px rgba(170, 134, 209, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-actions button:hover {
+      background: linear-gradient(45deg, #8e6fc3, #aa86d1);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(142, 111, 195, 0.5);
+    }
+
+    .product-actions button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(45deg);
+      transition: all 0.5s;
+    }
+
+    .product-actions button:hover::before {
+      left: 100%;
+    }
+
+    /* ---- SISTEMA DE PAGOS ---- */
+    .payment-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1002;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .payment-content {
+      background-color: #fff8ff;
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(142, 111, 195, 0.4);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .payment-content h3 {
+      color: #8e6fc3;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+    }
+
+    .payment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border: 2px solid #e7cef8;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .payment-option:hover {
+      background-color: #f3defd;
+      transform: translateY(-3px);
+    }
+
+    .payment-option input {
+      margin-right: 15px;
+    }
+
+    .payment-option label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: #6a42b1;
+    }
+
+    .payment-option img {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    .payment-details {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .payment-details input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 2px solid #e7cef8;
+      border-radius: 10px;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .close-payment {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #8e6fc3;
+    }
+
+    /* ---- FACTURA ---- */
+    .invoice {
+      display: none;
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      margin: 20px auto;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .invoice-header {
+      text-align: center;
+      margin-bottom: 25px;
+      border-bottom: 2px dashed #e7cef8;
+      padding-bottom: 15px;
+    }
+
+    .invoice-details {
+      margin-bottom: 20px;
+    }
+
+    .invoice-items {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    .invoice-items th, .invoice-items td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #f3defd;
+    }
+
+    .invoice-total {
+      text-align: right;
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #8e6fc3;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 2px dashed #e7cef8;
+    }
+
+    .invoice-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    /* ---- FOOTER ESPECIAL ---- */
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #8e6fc3;
+      font-size: 0.9em;
+      position: relative;
+      margin-top: auto;
+      background-color: #f3defd;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e7cef8, transparent);
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 8px;
+      }
+      
+      .nav-links li a {
+        padding: 8px 12px;
+        font-size: 0.85em;
+      }
+      
+      .novela, .contenido-seccion {
+        padding: 20px;
+        margin: 30px 15px;
+      }
+      
+      .cart-modal {
+        width: 85%;
+      }
+      
+      .foto-recuerdo {
+        max-width: 95%;
+      }
+      
+      .menu-novelas a {
+        min-width: 160px;
+        padding: 12px 18px;
+      }
+
+      .payment-content {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2em;
+      }
+      
+      .menu-novelas {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .menu-novelas a {
+        width: 100%;
+        max-width: 250px;
+      }
+      
+      .nav-links {
+        gap: 5px;
+      }
+      
+      .nav-links li a {
+        padding: 6px 10px;
+        font-size: 0.8em;
+      }
+      
+      #cart-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+        top: 15px;
+        right: 15px;
+      }
+
+      .invoice-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="titulo">¡Bienvenido/a a "Nami's cozy space"!</h1>
+    <div class="decoracion">-Donde encontrarás todo lo relacionado a novelas visuales-</div>
+  </header>
+
+  <!-- Icono del carrito -->
+  <div id="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+
+  <!-- Modal del carrito -->
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-content">
+      <h3>Tu Carrito 💖</h3>
+      <div id="cart-items"></div>
+      <p id="cart-total">Total: $<span>0.00</span></p>
+      <button onclick="closeCart()">Seguir explorando</button>
+      <button onclick="showPaymentOptions()">Pagar ahora</button>
+    </div>
+  </div>
+
+  <!-- Modal de métodos de pago -->
+  <div id="payment-modal" class="payment-modal">
+    <div class="payment-content">
+      <button class="close-payment" onclick="closePayment()">×</button>
+      <h3>💳 Métodos de Pago</h3>
+      <div class="payment-methods">
+        <div class="payment-option">
+          <input type="radio" id="nequi" name="payment-method" value="nequi">
+          <label for="nequi">
+            <span style="font-size: 1.5em; margin-right: 10px;">💜</span>
+            Nequi
+          </label>
+        </div>
+        <div class="payment-option">
+          <input type="radio" id="debit" name="payment-method" value="debit">
+          <label for="debit">
+            <span style="font-size: 1.5em; margin-right: 10px;">💳</span>
+            Tarjeta Débito
+          </label>
+        </div>
+        <div class="payment-option">
+          <input type="radio" id="credit" name="payment-method" value="credit">
+          <label for="credit">
+            <span style="font-size: 1.5em; margin-right: 10px;">💳</span>
+            Tarjeta Crédito
+          </label>
+        </div>
+        <div class="payment-option">
+          <input type="radio" id="pse" name="payment-method" value="pse">
+          <label for="pse">
+            <span style="font-size: 1.5em; margin-right: 10px;">🏦</span>
+            PSE (Pagos Seguros en Línea)
+          </label>
+        </div>
+      </div>
+      <div id="payment-details" class="payment-details">
+        <input type="text" id="card-number" placeholder="Número de tarjeta">
+        <input type="text" id="card-name" placeholder="Nombre en la tarjeta">
+        <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5">
+        <input type="text" id="card-cvv" placeholder="CVV" maxlength="3">
+      </div>
+      <button onclick="processPayment()">Confirmar Pago</button>
+    </div>
+  </div>
+
+  <!-- Factura -->
+  <div id="invoice" class="invoice">
+    <div class="invoice-header">
+      <h2>Nami's Cozy Space</h2>
+      <p>Factura de Compra</p>
+    </div>
+    <div class="invoice-details">
+      <p><strong>N° Factura:</strong> <span id="invoice-number"></span></p>
+      <p><strong>Fecha:</strong> <span id="invoice-date"></span></p>
+      <p><strong>Método de Pago:</strong> <span id="invoice-method"></span></p>
+    </div>
+    <table class="invoice-items">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody id="invoice-items-list">
+      </tbody>
+    </table>
+    <div class="invoice-total">
+      Total: $<span id="invoice-total">0.00</span>
+    </div>
+    <div class="invoice-actions">
+      <button onclick="printInvoice()">🖨️ Imprimir Factura</button>
+      <button onclick="closeInvoice()">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Barra de navegación optimizada -->
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="#inicio" class="active" onclick="mostrarSeccion('inicio', event)">Inicio</a></li>
+      <li><a href="#sobre-mi" onclick="mostrarSeccion('sobre-mi', event)">Sobre mí</a></li>
+      <li><a href="#contacto" onclick="mostrarSeccion('contacto', event)">Contacto</a></li>
+      <li><a href="#proximamente" onclick="mostrarSeccion('proximamente', event)">Próximamente</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- INICIO -->
+    <div id="inicio" class="contenido-seccion">
+      <nav class="menu-novelas">
+        <a href="#novela1">🧡 *The Kid At The Back*</a>
+        <a href="#novela2">💗 *14 Days With You*</a>
+        <a href="#novela3">❤️ *A Date With Death*</a>
+      </nav>
+
+      <section id="novela1" class="novela">
+        <h2>🧡 The Kid At The Back</h2>
+        <div class="foto-recuerdo">
+          <img src="tkab.jpg" alt="Portada The Kid At The Back">
+          <div class="mensaje-hover">Header</div>
+        </div>
+        <div class="apartado">
+          <h3>🪓 Sinopsis principal</h3>
+          <p>Hay un chico, bastante alto, que a menudo nadie ni siquiera se da cuenta de su presencia, pero está, siempre lo está. Suele sentarse atrás, vestido solo de negro. Sin embargo, sus ojos eran brillantes, rojos como las hojas de otoño, y sin duda no se apartaban de ti una vez que los mirabas fijamente.</p>
+        </div>
+        <div class="apartado">
+          <h3>🍂 Personajes</h3>
+          <p>Solivan Brugmansia, Crowe Ichabod, Subaru Oogami, Hyugo Sugimoto, Brittney Claire, Jessie Sitrus, Deryl Helianthus.</p>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="chart1.jpg" alt="Personajes principales">
+          <div class="mensaje-hover">Personajes principales</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="chart2.jpg" alt="Personajes secundarios">
+          <div class="mensaje-hover">Personajes secundarios</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="chart3.jpg" alt="Personajes secundarios">
+          <div class="mensaje-hover">Personajes secundarios</div>
+        </div>
+        <div class="apartado">
+          <h3>❣️ Rutas disponibles</h3>
+          <p>Hasta el momento, se ofrecen dos rutas! Hay finales malos y buenos...</p>
+          <p>Ruta de Sol</p>
+          <p>Ruta de Crowe</p>
+        </div>
+        <div class="apartado">
+          <h3>🎵 Música & ambientación</h3>
+          <p>SOUND FX: Pixabay, Takai (音楽の卵), Wingless Seraph, Soundbible, Orange Free sounds, MGW SoundDesign, AlanDalcastagne</p>
+          <p>BACKGROUND MUSIC: RUSTED MUSIC STUDIO, Pixabay</p>
+          <p>TENTATIVE Backgrounds: fantasia_kitt</p>
+          <p>Phone Feature: Nighten</p>
+          <p>Art/UI, Story Writing and Coding: fantasia_kitt , ZUKI (co-writer/editor)</p>
+        </div>
+        <div class="product-actions">
+          <p class="price">$25000</p>
+          <button onclick="addToCart('The Kid At The Back', 25000)">Añadir al carrito 🛒</button>
+        </div>
+      </section>
+
+      <section id="novela2" class="novela">
+        <h2>💗 14 Days With You</h2>
+        <div class="foto-recuerdo">
+          <img src="14dwy.jpeg" alt="Portada 14 Days With You">
+          <div class="mensaje-hover">Header</div>
+        </div>
+        
+        <div class="apartado">
+          <h3>🔨 Sinopsis principal</h3>
+          <p>Tras mudarte de vuelta a Corland Bay, las cosas se han vuelto más... inquietantes. Parece que siempre se te pierde la ropa lavada, se oyen pasos espeluznantes por el pasillo por la noche y, para colmo, tu vecina jura que vio a alguien salir de tu apartamento mientras no estabas. Pero bueno... al menos el desconocido de pelo rosa que conociste en el trabajo está ahí para protegerte, ¿No?.</p>
+        </div>
+        <div class="apartado">
+          <h3>🍒 Personajes</h3>
+          <p>Ren, Violet, Elanor, Conan, Jae, Leon, Teodore, Olivia, Kiara, Moth.</p>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="Ren.jpg" alt="Ren - 14 Days With You">
+          <div class="mensaje-hover">Ren</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="Violet.jpg" alt="Violet - 14 Days With You">
+          <div class="mensaje-hover">Violet</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="Eleanor.jpg" alt="Elanor - 14 Days With You">
+          <div class="mensaje-hover">Elanor</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="Conan.jpg" alt="Conan - 14 Days With You">
+          <div class="mensaje-hover">Conan</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="Jae.jpg" alt="Jae - 14 Days With You">
+          <div class="mensaje-hover">Jae</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="Leon.jpg" alt="Leon - 14 Days With You">
+          <div class="mensaje-hover">Leon</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="Teodore.jpg" alt="Teodore - 14 Days With You">
+          <div class="mensaje-hover">Teodore</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="Kiara.jpg" alt="Kiara - 14 Days With You">
+          <div class="mensaje-hover">Kiara</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="Moth.jpg" alt="Moth - 14 Days With You">
+          <div class="mensaje-hover">Moth</div>
+        </div>
+        <div class="apartado">
+          <h3>💗 Rutas disponibles</h3>
+          <p>¿Por qué querer a alguien más?</p>
+          <p>Renrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenren</p>
+          <p>renrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenren</p>
+          <p>renrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenrenr</p>
+        </div>
+        <div class="apartado">
+          <h3>🎵 Música & ambientación</h3>
+          <p>BGM and glitch SFX: Yuli Audio Craft</p>
+          <p>Ambience SFX: Pixabay</p>
+          <p>Kinetic text tags: Wattson</p>
+          <p>Background images (raw): Pexels</p>
+          <p>Everything else: cutiesai</p>
+        </div>
+        <div class="product-actions">
+          <p class="price">$27000</p>
+          <button onclick="addToCart('14 Days With You', 27000)">Añadir al carrito 🛒</button>
+        </div>
+      </section>
+
+      <section id="novela3" class="novela">
+        <h2>❤️ A Date With Death</h2>
+        <div class="foto-recuerdo">
+          <img src="adwd.png" alt="Portada A Date With Death">
+          <div class="mensaje-hover">Header</div>
+        </div>
+        <div class="apartado">
+          <h3>💀 Sinopsis principal</h3>
+          <p>Eres una persona común y corriente... o eso creías. Durante toda tu vida, has estado a punto de morir por pura suerte... ¿o es algo más? Cuando un extraño programa aparece de repente en tu ordenador, y alguien que dice ser la muerte dice que ha venido a por tu alma, tu vida, tal como la conocías, da un vuelco.</p>
+          <p>A medida que te adentras en el misterioso hombre que se hace llamar la muerte, empiezas a preguntarte si el destino los unió por alguna razón. ¿Podrás resistirte a su encanto or caerás rendido ante quien está destinado a robarte el alma?</p>
+        </div>
+        <div class="apartado">
+          <h3>🖤 Personajes</h3>
+          <p>Casper (Grim/La muerte), 5012.</p>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="casper.png" alt="Casper - A Date With Death">
+          <div class="mensaje-hover">Casper</div>
+        </div>
+        <div class="foto-recuerdo">
+          <img src="5012 (2).png" alt="5012 - A Date With Death">
+          <div class="mensaje-hover">5012</div>
+        </div>
+        <div class="apartado">
+          <h3>💫 Rutas disponibles</h3>
+          <p>Está disponible una ruta única, Casper..</p>
+        </div>
+        <div class="apartado">
+          <h3>✨ Créditos extra</h3>
+          <p>Developer: Two and a Half Studios</p>
+          <p>Publisher: Two and a Half Studios</p>
+          <p>Engine: Ren'Py</p>
+          <p>Platform: Microsoft Windows, macOS, Linux</p>
+          <p>Release date: December 7, 2023</p>
+          <p>Genre: Dating Sim, Visual Novel</p>
+          <p>Mode: Single Player</p>
+        </div>
+        <div class="product-actions">
+          <p class="price">$30000</p>
+          <button onclick="addToCart('A Date With Death', 30000)">Añadir al carrito 🛒</button>
+        </div>
+      </section>
+
+      
+
+      <div class="volver-arriba">
+        <a onclick="volverArriba()">⬆️ Volver arriba</a>
+      </div>
+    </div>
+
+    <!-- SOBRE MÍ -->
+    <div id="sobre-mi" class="contenido-seccion">
+      <h2>Sobre mí</h2>
+      <div class="apartado">
+        <p>¡Hola! Soy Nami, una apasionada de las novelas visuales y del arte de la narración. Desde hace tiempo me encanta sumergirme en historias que logran transportarnos a mundos llenos de emociones, personajes memorables y decisiones que cambian el rumbo de todo. En este espacio comparto mis recomendaciones, opiniones y descubrimientos sobre novelas visuales, con la idea de darles más visibilidad y ayudar a que más personas puedan conocerlas, disfrutarlas y adquirirlas.</p>
+        <p>Me gusta pensar en este sitio como un pequeño rincón para quienes aman leer, vivir aventuras interactivas y dejarse envolver por tramas profundas y cautivadoras. Aquí encontrarás desde títulos populares hasta joyas poco conocidas que merecen brillar.</p>
+      </div>
+      <div class="foto-recuerdo">
+        <img src="Ren_33.jpg" alt="Ren - 14 Days With You">
+        <div class="mensaje-hover">Fuente: 14 Days With You</div>
+      </div>
+
+      <div class="volver-arriba">
+        <a onclick="volverArriba()">⬆️ Volver arriba</a>
+      </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div id="contacto" class="contenido-seccion">
+      <h2>Contacto</h2>
+      <div class="apartado">
+        <p>Puedes escribirme a <strong>namiagvisualnovels@gmail.com</strong> o seguirme en Twitter como <strong>@namiVN</strong></p>
+        <p>¡Estoy abierta a colaboraciones y recomendaciones de novelas visuales!</p>
+      </div>
+      <div class="volver-arriba">
+        <a onclick="volverArriba()">⬆️ Volver arriba</a>
+      </div>
+    </div>
+
+    <!-- PROXIMAMENTE -->
+    <div id="proximamente" class="contenido-seccion">
+      <h2>Próximamente</h2>
+      <div class="apartado">
+        <p>Actualmente estoy trabajando en presentarles varias nuevas novelas visuales con estilos diferentes: desde romance hasta novelas visuales gurokawa (de terror pintado de colores rosa) o thriller!.</p>
+        <p>Pienso traer a:</p>
+      </div>
+      <div class="foto-recuerdo">
+        <img src="mushroom.jpg" alt="Mushroom Oasis">
+        <div class="mensaje-hover">Mushroom Oasis</div>
+      </div>
+      <div class="foto-recuerdo">
+        <img src="klein.jpg" alt="Klein V.0.1">
+        <div class="mensaje-hover">Klein V.0.1</div>
+      </div>
+      <div class="foto-recuerdo">
+        <img src="nso.jpg" alt="Needy Streamer Overload">
+        <div class="mensaje-hover">Needy Streamer Overload</div>
+      </div>
+      <div class="apartado">
+        <p>¡Y muchas más novedades emocionantes!</p>
+      </div>
+      <div class="volver-arriba">
+        <a onclick="volverArriba()">⬆️ Volver arriba</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Hecho con 💜 por Nami - 2024 | Todos los derechos reservados a los creadores de las novelas
+  </footer>
+
+  <script>
+    let cart = [];
+    let isScrolling = false;
+
+    // ---- FUNCIONES PRINCIPALES ----
+    function mostrarSeccion(id, event) {
+      if (event) {
+        event.preventDefault();
+      }
+
+      // Oculta todas las secciones y muestra la seleccionada
+      document.querySelectorAll('.contenido-seccion').forEach(sec => {
+        sec.style.display = 'none';
+      });
+      
+      const seccion = document.getElementById(id);
+      if (seccion) {
+        seccion.style.display = 'block';
+        
+        // Scroll suave al principio de la sección
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+      
+      // Actualiza la clase 'active' en los links
+      document.querySelectorAll('.nav-links li a').forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === `#${id}`) {
+          a.classList.add('active');
+        }
+      });
+
+      // Muestra novelas solo en "Inicio"
+      if (id === 'inicio') {
+        document.querySelectorAll('.novela').forEach(n => {
+          n.style.display = 'block';
+        });
+      }
+    }
+
+    // ---- CARRITO MÁGICO ----
+    function toggleCart() {
+      const modal = document.getElementById("cart-modal");
+      modal.style.display = modal.style.display === "block" ? "none" : "block";
+    }
+
+    function closeCart() {
+      document.getElementById("cart-modal").style.display = "none";
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+      
+      const cartIcon = document.getElementById("cart-icon");
+      cartIcon.style.transform = "scale(1.3) rotate(15deg)";
+      setTimeout(() => { cartIcon.style.transform = "scale(1) rotate(0)"; }, 300);
+    }
+
+    function updateCart() {
+      document.getElementById("cart-count").textContent = cart.length;
+      document.getElementById("cart-items").innerHTML = cart.map(item => 
+        `<div>${item.name} - $${item.price.toFixed(2)}</div>`
+      ).join("");
+      
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      document.querySelector("#cart-total span").textContent = total.toFixed(2);
+    }
+
+    // ---- SISTEMA DE PAGO ----
+    function showPaymentOptions() {
+      if (cart.length === 0) {
+        alert("¡Tu carrito está vacío! 💘");
+        return;
+      }
+      document.getElementById("payment-modal").style.display = "flex";
+    }
+
+    function closePayment() {
+      document.getElementById("payment-modal").style.display = "none";
+    }
+
+    function processPayment() {
+      const selectedMethod = document.querySelector('input[name="payment-method"]:checked');
+      
+      if (!selectedMethod) {
+        alert("Por favor selecciona un método de pago");
+        return;
+      }
+      
+      // Simular procesamiento de pago
+      setTimeout(() => {
+        closePayment();
+        closeCart();
+        generateInvoice(selectedMethod.value);
+        alert("¡Pago procesado con éxito! 💖");
+        cart = [];
+        updateCart();
+      }, 1500);
+    }
+
+    // ---- GENERACIÓN DE FACTURA ----
+    function generateInvoice(paymentMethod) {
+      const invoice = document.getElementById("invoice");
+      const invoiceNumber = Math.floor(Math.random() * 1000000);
+      const now = new Date();
+      const formattedDate = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
+      
+      document.getElementById("invoice-number").textContent = invoiceNumber;
+      document.getElementById("invoice-date").textContent = formattedDate;
+      
+      // Traducir método de pago
+      let methodText = "";
+      switch(paymentMethod) {
+        case "nequi": methodText = "Nequi"; break;
+        case "debit": methodText = "Tarjeta Débito"; break;
+        case "credit": methodText = "Tarjeta Crédito"; break;
+        case "pse": methodText = "PSE"; break;
+        default: methodText = paymentMethod;
+      }
+      document.getElementById("invoice-method").textContent = methodText;
+      
+      // Llenar items de la factura
+      const invoiceItems = document.getElementById("invoice-items-list");
+      invoiceItems.innerHTML = "";
+      
+      cart.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>$${item.price.toFixed(2)}</td>
+        `;
+        invoiceItems.appendChild(row);
+      });
+      
+      // Calcular total
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      document.getElementById("invoice-total").textContent = total.toFixed(2);
+      
+      // Mostrar factura
+      invoice.style.display = "block";
+    }
+
+    function printInvoice() {
+      const invoice = document.getElementById("invoice");
+      const originalContents = document.body.innerHTML;
+      
+      document.body.innerHTML = invoice.innerHTML;
+      window.print();
+      
+      document.body.innerHTML = originalContents;
+      location.reload();
+    }
+
+    function closeInvoice() {
+      document.getElementById("invoice").style.display = "none";
+    }
+
+    function volverArriba() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Inicialización mejorada
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mostrar sección inicial
+      mostrarSeccion('inicio', null);
+      updateCart();
+      
+      // Manejar clicks en enlaces de navegación
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const id = link.getAttribute('href').substring(1);
+          mostrarSeccion(id, e);
+        });
+      });
+      
+      // Manejar clicks en botones "Volver arriba"
+      document.querySelectorAll('.volver-arriba a').forEach(btn => {
+        btn.addEventListener('click', volverArriba);
+      });
+
+      // Mostrar detalles de tarjeta cuando se seleccione débito/crédito
+      document.querySelectorAll('input[name="payment-method"]').forEach(input => {
+        input.addEventListener('change', function() {
+          const details = document.getElementById("payment-details");
+          details.style.display = (this.value === 'debit' || this.value === 'credit') ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
